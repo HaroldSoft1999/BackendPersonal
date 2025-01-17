@@ -3,6 +3,7 @@ import { Usuario } from './usuarios.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Rol } from '../roles/rol.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsuariosService {
@@ -15,6 +16,10 @@ export class UsuariosService {
 
   // Crear un usuario
   async crearUsuario(data: Partial<Usuario>): Promise<Usuario> {
+    // Encriptar la contraseña antes de guardar el usuario
+    const salt = await bcrypt.genSalt(10);
+    data.password = await bcrypt.hash(data.password, salt);
+
     const usuario = this.usuarioRepository.create(data);
     return this.usuarioRepository.save(usuario);
   }
@@ -55,4 +60,9 @@ export class UsuariosService {
     usuario.roles = roles; // Asigna los roles al usuario
     return this.usuarioRepository.save(usuario); // Guarda el usuario con los nuevos roles
   }
+
+  async obtenerUsuarioPorEmail(email: string) {
+    return this.usuarioRepository.findOne({ where: { email } });
+  }
+
 }

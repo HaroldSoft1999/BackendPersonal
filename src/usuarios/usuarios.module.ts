@@ -9,5 +9,6 @@ import { Rol } from '../roles/rol.entity';
   imports: [TypeOrmModule.forFeature([Usuario, Rol])], // Registra Usuario y Rol
   controllers: [UsuariosController],
   providers: [UsuariosService],
+  exports: [UsuariosService],
 })
 export class UsuariosModule {}

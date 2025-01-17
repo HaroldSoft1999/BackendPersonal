@@ -19,6 +19,10 @@ export class Usuario {
   activo: boolean;
 
   @ManyToMany(() => Rol, (rol) => rol.usuarios)
-  @JoinTable() // Relación con tabla intermedia para Usuario y Rol
+  @JoinTable({
+    name: 'usuario_roles', // Nombre personalizado de la tabla intermedia
+    joinColumn: { name: 'usuario_id', referencedColumnName: 'id' }, // FK hacia Usuario
+    inverseJoinColumn: { name: 'rol_id', referencedColumnName: 'id' }, // FK hacia Rol
+  })
   roles: Rol[];
 }

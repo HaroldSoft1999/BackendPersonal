@@ -15,6 +15,10 @@ export class Rol {
   usuarios: Usuario[];
 
   @ManyToMany(() => Permiso, (permiso) => permiso.roles)
-  @JoinTable() // Tabla intermedia para Rol y Permiso
+  @JoinTable({
+    name: 'rol_permisos', // Nombre personalizado de la tabla intermedia
+    joinColumn: { name: 'rol_id', referencedColumnName: 'id' }, // FK hacia Rol
+    inverseJoinColumn: { name: 'permiso_id', referencedColumnName: 'id' }, // FK hacia Permiso
+  })
   permisos: Permiso[];
 }

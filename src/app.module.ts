@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm'; // Importar TypeOrmModule
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -23,6 +24,7 @@ import { RolesModule } from './roles/roles.module';
     }),
     UsuariosModule,
     RolesModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

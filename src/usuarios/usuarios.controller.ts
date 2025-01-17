@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { Usuario } from './usuarios.entity';
+import { JwtAuthGuard } from '../auth/jwt.guard';
 
 @Controller('usuarios')
 export class UsuariosController {
@@ -13,6 +14,7 @@ export class UsuariosController {
   }
 
   // Obtener todos los usuarios
+  @UseGuards(JwtAuthGuard)
   @Get()
   async obtenerUsuarios(): Promise<Usuario[]> {
     return this.usuariosService.obtenerUsuarios();
