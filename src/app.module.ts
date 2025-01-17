@@ -9,18 +9,16 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mssql',
-      host: 'DESKTOP-PMROK9D', // Servidor SQL
-      port: 1433, // Puerto configurado
-      username: 'sa', // Usuario de SQL Server
-      password: 'root', // Contraseña de SQL Server
-      database: 'backendpersonal', // Base de datos
+      type: 'mysql',
+      host: 'haroldsoft.com', // Servidor SQL
+      port: 3306, // Puerto configurado
+      username: 'gbupgbcb_harold', // Usuario de SQL Server
+      password: '70822300Go..', // Contraseña de SQL Server
+      database: 'gbupgbcb_apipersonal', // Base de datos
       entities: [__dirname + '/**/*.entity{.ts,.js}'], // Entidades
       synchronize: true, // ¡Solo usar en desarrollo!
       logging: true, // Opcional: habilita logs para depuración
-      options: {
-        trustServerCertificate: true, // Confía en el certificado del servidor
-      },
+
     }),
     UsuariosModule,
     RolesModule,
