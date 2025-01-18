@@ -20,7 +20,7 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async login(email, password) {
-        const usuario = await this.usuariosService.obtenerUsuarioPorEmail(email);
+        const usuario = await this.usuariosService.obtenerUsuarioPorEmail(email, ['roles']);
         if (!usuario) {
             throw new common_1.UnauthorizedException('Credenciales inválidas');
         }
@@ -28,14 +28,14 @@ let AuthService = class AuthService {
         if (!isPasswordValid) {
             throw new common_1.UnauthorizedException('Contraseña inválida');
         }
-        const payload = { id: usuario.id, email: usuario.email };
+        const payload = { id: usuario.id, email: usuario.email, roles: usuario.roles.map((rol) => rol.nombre) };
         const token = this.jwtService.sign(payload);
         return {
             message: 'Inicio de sesión exitoso',
             user: {
                 id: usuario.id,
-                nombre: usuario.nombre,
                 email: usuario.email,
+                roles: usuario.roles.map((rol) => rol.nombre),
             },
             token,
         };

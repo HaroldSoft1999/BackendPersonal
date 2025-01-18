@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const rol_entity_1 = require("./rol.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-const permiso_entity_1 = require("./permiso.entity");
+const permiso_entity_1 = require("../permisos/permiso.entity");
 let RolesService = class RolesService {
     constructor(rolRepository, permisoRepository) {
         this.rolRepository = rolRepository;

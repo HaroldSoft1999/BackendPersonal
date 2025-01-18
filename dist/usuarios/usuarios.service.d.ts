@@ -11,5 +11,5 @@ export declare class UsuariosService {
     actualizarUsuario(id: number, data: Partial<Usuario>): Promise<Usuario>;
     eliminarUsuario(id: number): Promise<void>;
     asignarRolesAUsuario(usuarioId: number, rolesIds: number[]): Promise<Usuario>;
-    obtenerUsuarioPorEmail(email: string): Promise<Usuario>;
+    obtenerUsuarioPorEmail(email: string, relations?: string[]): Promise<Usuario>;
 }

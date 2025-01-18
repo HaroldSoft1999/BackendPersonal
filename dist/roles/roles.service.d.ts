@@ -1,6 +1,6 @@
 import { Rol } from './rol.entity';
 import { Repository } from 'typeorm';
-import { Permiso } from './permiso.entity';
+import { Permiso } from '../permisos/permiso.entity';
 export declare class RolesService {
     private readonly rolRepository;
     private readonly permisoRepository;

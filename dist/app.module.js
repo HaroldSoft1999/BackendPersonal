@@ -12,6 +12,8 @@ const typeorm_1 = require("@nestjs/typeorm");
 const usuarios_module_1 = require("./usuarios/usuarios.module");
 const roles_module_1 = require("./roles/roles.module");
 const auth_module_1 = require("./auth/auth.module");
+const seeder_module_1 = require("./seeder/seeder.module");
+const permisos_module_1 = require("./permisos/permisos.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,6 +34,8 @@ exports.AppModule = AppModule = __decorate([
             usuarios_module_1.UsuariosModule,
             roles_module_1.RolesModule,
             auth_module_1.AuthModule,
+            permisos_module_1.PermisosModule,
+            seeder_module_1.SeederModule,
         ],
     })
 ], AppModule);

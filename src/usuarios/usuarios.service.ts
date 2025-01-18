@@ -61,8 +61,11 @@ export class UsuariosService {
     return this.usuarioRepository.save(usuario); // Guarda el usuario con los nuevos roles
   }
 
-  async obtenerUsuarioPorEmail(email: string) {
-    return this.usuarioRepository.findOne({ where: { email } });
+  async obtenerUsuarioPorEmail(email: string, relations: string[] = []): Promise<Usuario> {
+    return this.usuarioRepository.findOne({
+      where: { email },
+      relations,
+    });
   }
 
 }

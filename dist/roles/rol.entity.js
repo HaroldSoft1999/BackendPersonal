@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Rol = void 0;
 const typeorm_1 = require("typeorm");
 const usuarios_entity_1 = require("../usuarios/usuarios.entity");
-const permiso_entity_1 = require("./permiso.entity");
+const permiso_entity_1 = require("../permisos/permiso.entity");
 let Rol = class Rol {
 };
 exports.Rol = Rol;

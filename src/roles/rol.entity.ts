@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column,ManyToMany, JoinTable  } from 'typeorm';
 import { Usuario } from '../usuarios/usuarios.entity';
-import { Permiso } from './permiso.entity';
+import { Permiso } from '../permisos/permiso.entity';
+
 
 
 @Entity()

@@ -12,8 +12,8 @@ export class AuthService {
   ) {}
 
   async login(email: string, password: string): Promise<any> {
-    // Buscar el usuario por email
-    const usuario = await this.usuariosService.obtenerUsuarioPorEmail(email);
+    // Buscar el usuario por email con sus roles
+    const usuario = await this.usuariosService.obtenerUsuarioPorEmail(email, ['roles']);
     if (!usuario) {
       throw new UnauthorizedException('Credenciales inválidas');
     }
@@ -25,17 +25,20 @@ export class AuthService {
     }
 
     // Generar el token JWT
-    const payload = { id: usuario.id, email: usuario.email };
+    const payload = { id: usuario.id, email: usuario.email, roles: usuario.roles.map((rol) => rol.nombre) };
     const token = this.jwtService.sign(payload);
 
+    // Retornar el token y los datos del usuario
     return {
       message: 'Inicio de sesión exitoso',
+
       user: {
         id: usuario.id,
-        nombre: usuario.nombre,
         email: usuario.email,
+        roles: usuario.roles.map((rol) => rol.nombre), // Devolver todos los roles del usuario
       },
-      token, // Retornar el token
+
+      token,
     };
   }
 

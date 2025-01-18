@@ -2,7 +2,10 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards } fro
 import { UsuariosService } from './usuarios.service';
 import { Usuario } from './usuarios.entity';
 import { JwtAuthGuard } from '../auth/jwt.guard';
+import { Roles } from '../auth/roles.decorador';
+import { RolesGuard } from '../auth/roles.guard';
 
+@UseGuards(JwtAuthGuard,RolesGuard)
 @Controller('usuarios')
 export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
@@ -14,7 +17,7 @@ export class UsuariosController {
   }
 
   // Obtener todos los usuarios
-  @UseGuards(JwtAuthGuard)
+  @Roles('Admin', 'SuperAdmin')
   @Get()
   async obtenerUsuarios(): Promise<Usuario[]> {
     return this.usuariosService.obtenerUsuarios();

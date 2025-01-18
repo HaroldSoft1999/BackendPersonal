@@ -55,8 +55,11 @@ let UsuariosService = class UsuariosService {
         usuario.roles = roles;
         return this.usuarioRepository.save(usuario);
     }
-    async obtenerUsuarioPorEmail(email) {
-        return this.usuarioRepository.findOne({ where: { email } });
+    async obtenerUsuarioPorEmail(email, relations = []) {
+        return this.usuarioRepository.findOne({
+            where: { email },
+            relations,
+        });
     }
 };
 exports.UsuariosService = UsuariosService;
